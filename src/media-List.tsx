@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Media } from './model/media'
 import axios from 'axios'
+import { ListGroup } from 'react-bootstrap'
 
 export const MediaList = () => {
     const [mediaList, setMovies] = useState<Media[]>()
@@ -16,19 +17,18 @@ export const MediaList = () => {
                 console.log(response)
                 setMovies(response.data.data.movies)
             }).catch((err) => console.error(err))
-
     }
 
     return (
         <div>
-            <ul>
-                <ul>
-                    {mediaList && mediaList.map(({ id, summary }: any) => {
-                        return <li key={id}>{summary}</li>;
-                    })}
+            <ListGroup>
+                {mediaList && mediaList.map((m:Media, index) => {
+                    let identity: any;
+                    identity = m.id
+                    return <ListGroup.Item key={identity} variant="info">{m.title}</ListGroup.Item>;
+                })}
 
-                </ul>
-            </ul>
+            </ListGroup>
         </div>
     )
 }

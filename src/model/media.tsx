@@ -10,4 +10,5 @@ export interface Media{
     genres: String[]
     summary: String
     torrents : Torrent[]
+    title: String
 }
